@@ -19,7 +19,7 @@ export const AuthProvider = ({children}) =>{
       }, []);
 
     
-      const logado = (email, password) => {
+      const login = (email, password) => {
         const usersStorage = JSON.parse(localStorage.getItem("users_bd"));
     
         const hasUser = usersStorage?.filter((user) => user.email === email);
@@ -70,7 +70,7 @@ export const AuthProvider = ({children}) =>{
 
     return  (
         <AuthContext.Provider
-          value={{ user, signed: !!user, logado, signup, signout }}
+          value={{ user, signed: !!user, login, signup, signout }}
         >
           {children}
         </AuthContext.Provider>

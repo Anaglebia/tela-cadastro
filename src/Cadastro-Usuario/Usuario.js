@@ -1,99 +1,146 @@
-import React, { useState } from "react";
-import Input from '../Components/Input';
-import Button from '../Components/Button';
-import * as C from './styles';
-import { Link, useNavigate } from "react-router-dom";
-import UseAuth from '../Hooks/UseAuth';
+import React from "react";
+import { Link } from "react-router-dom";
+import { Button, Label, Input,Container, Row, Col } from 'reactstrap';
+
 
 const Usuario = () => {
-  const [email, setEmail] = useState("");
-  const [nome, setNome] = useState("");
-  const [sobrenome, setSobrenome] = useState("");
-  const [dataNasc, setDataNasc] = useState("");
-  const [cpf, setCpf] = useState("");
-  const [rg, setRg] = useState("");
-
-  const [emailConf, setEmailConf] = useState("");
-  const [senha, setSenha] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-
-  const { signup } = UseAuth();
-
-  const handleSignup = () => {
-    if (!email | !emailConf | !senha) {
-      setError("Preencha todos os campos");
-      return;
-    } else if (email !== emailConf) {
-      setError("Os e-mails não são iguais");
-      return;
-    }
-
-    const res = signup(email, senha);
-
-    if (res) {
-      setError(res);
-      return;
-    }
-
-    alert("Usuário cadatrado com sucesso!");
-    navigate("/");
-  };
-
   return (
-    <C.Container>
-      <C.Label>Cadastrar Pessoa Fisica</C.Label>
-      <C.Content>
-      <C.Label>Dados Pessoais</C.Label>
-      <Input
-          type="text"
-          placeholder="nome"
-          value={nome}
-          onChange={(e) => [setNome(e.target.value), setError("")]}
-        />
-       
-       <Input
-          type="text"
-          placeholder="sobrenome"
-          value={sobrenome}
-          onChange={(e) => [setSobrenome(e.target.value), setError("")]}
-        />
-         <Input
-          type="dataNasc"
-          placeholder="31/01/1900"
-          value={dataNasc}
-          onChange={(e) => [setDataNasc(e.target.value), setError("")]}
-        />
-        <Input
-          type="email"
-          placeholder="email@email.com"
-          value={email}
-          onChange={(e) => [setEmail(e.target.value), setError("")]}
-        />
-        <Input
-          type="cpf"
-          placeholder="CPF"
-          value={cpf}
-          onChange={(e) => [setCpf(e.target.value), setError("")]}
-        />
-         <Input
-          type="rg"
-          placeholder="RG"
-          value={rg}
-          onChange={(e) => [setRg(e.target.value), setError("")]}
-        />
-       <C.Label>Endereços</C.Label>
+      <Container>
+         <Row>
+         <h1>Cadastrar Pessoa Fisica</h1>
+        </Row>
+        <Row>
+          <Col>Dados Pessoais</Col>
+        </Row>
+        <Row>
+          <Col>
+          <Label  className="mr-sm-2 mt-2">Nome</Label>
+          <Input type="text"  placeholder="Nome" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">Sobrenome</Label>
+          <Input type="text"  placeholder="Sobrenom" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">Data de Nascimento</Label>
+          <Input  type="text"  placeholder="31/01/1900" />
+          </Col>
+          <Row>
+          <Col >
+          <Label  className="mr-sm-2">Email</Label>
+          <Input  type="email"  placeholder="email@email.com" />
+          </Col>
+          <Col >
+          <Label  className="mr-sm-2">CPF</Label>
+          <Input  type="text"  placeholder="999.999.999.99" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">RG</Label>
+          <Input className="mr-sm-2 mb-4"  type="text"  placeholder="999.999.999.99" />
+          </Col>
+        </Row>
+         <hr></hr>
+        </Row>
+
+        <Row>
+        <Row>
+          <Col>Endereços</Col>
+        </Row>
+          <Col>
+          <Label  className="mr-sm-2 mt-2">Logradouro</Label>
+          <Input  type="text"  placeholder="Rua Sem Nome" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">Numero</Label>
+          <Input  type="text"  placeholder="999999" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">CEP</Label>
+          <Input  type="text"  placeholder="99999-999" />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+          <Label  className="mr-sm-2">Complemento</Label>
+          <Input  type="text"  placeholder="Casa 999" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">Cidade</Label>
+          <Input  type="text"  placeholder="Rio de Janeiro" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">Estado</Label>
+          <Input  type="text"  placeholder="RJ" />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+          <Label  className="mr-sm-2 mt-2">Logradouro</Label>
+          <Input  type="text"  placeholder="Rua Sem Nome" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">Numero</Label>
+          <Input  type="text"  placeholder="999999" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">CEP</Label>
+          <Input  type="text"  placeholder="99999-999" />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+          <Label  className="mr-sm-2">Complemento</Label>
+          <Input  type="text"  placeholder="Casa 999" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">Cidade</Label>
+          <Input  type="text"  placeholder="Rio de Janeiro" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">Estado</Label>
+          <Input  type="text"  placeholder="RJ" />
+          </Col>
+        </Row>
+        <Button size="lg" outline className="mt-3 lg mb-3" to="/">Adicionar novo endereço</Button>
+        <hr></hr>
+        <Row>
+        <Row>
+          <Col>Contatos</Col>
+        </Row>
+          <Col>
+          <Label  className="mr-sm-2">Nome</Label>
+          <Input  type="text"  placeholder="Nome Contato" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">Contato</Label>
+          <Input  type="text"  placeholder="email/Telefone" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">Tipo Contato</Label>
+          <Input  type="text"  placeholder="email" />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+          <Label  className="mr-sm-2">Nome</Label>
+          <Input  type="text"  placeholder="Nome Contato" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">Contato</Label>
+          <Input  type="text"  placeholder="email/Telefone" />
+          </Col>
+          <Col>
+          <Label  className="mr-sm-2">Tipo Contato</Label>
+          <Input  type="text"  placeholder="email" />
+          </Col>
+        </Row>
+        <Button size="lg" outline className="mt-3 lg mb-3" to="/">Adicionar novo endereço</Button>
+        <hr></hr>
+        <Link to="/">
+        <Button size="lg" outline className="mt-3 lg mb-3" to="/">Salvar</Button>
+        </Link>
         
-        <C.labelError>{error}</C.labelError>
-        <Button Text="Salvar" onClick={handleSignup} />
-        <C.LabelSignin>
-          
-          <C.Strong>
-            <Link to="/">&nbsp;Salvar</Link>
-          </C.Strong>
-        </C.LabelSignin>
-      </C.Content>
-    </C.Container>
+      </Container>
   );
 };
 

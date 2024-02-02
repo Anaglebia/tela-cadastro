@@ -1,80 +1,62 @@
-
-import React, { useState } from "react";
-import Input from '../Components/Input';
-import Button from '../Components/Button';
+import React from "react";
 import * as C from './styles';
-import { Link, useNavigate } from "react-router-dom";
-import UseAuth from '../Hooks/UseAuth';
+import { Link } from "react-router-dom";
+import { Button,FormGroup,Form,  Label, Input, CardTitle, Row, Col, Card,  CardText,  } from 'reactstrap';
 
 const Cadastro = () => {
-  const [email, setEmail] = useState("");
-  const [emailConf, setEmailConf] = useState("");
-  const [senha, setSenha] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
-
-  const { signup } = UseAuth();
-
-  const handleSignup = () => {
-    if (!email | !emailConf | !senha) {
-      setError("Preencha todos os campos");
-      return;
-    } else if (email !== emailConf) {
-      setError("Os e-mails não são iguais");
-      return;
-    }
-
-    const res = signup(email, senha);
-
-    if (res) {
-      setError(res);
-      return;
-    }
-
-    alert("Usuário cadatrado com sucesso!");
-    navigate("/");
-  };
 
   return (
-    <C.Container>
-      <C.Label>Cadastrar Usuário</C.Label>
+    <C.Container> 
+        <C.Label>Cadastrar usuário</C.Label>
       <C.Content>
-      <Input
-          type="username"
-          placeholder="nome@email.com"
-          value={email}
-          onChange={(e) => [setEmail(e.target.value), setError("")]}
-        />
-       
-        <Input
-          type="email"
-          placeholder="nome@email.com"
-          value={emailConf}
-          onChange={(e) => [setEmailConf(e.target.value), setError("")]}
-        />
-          <Input
-          type="phone"
-          placeholder="+55 11 99999 9999"
-          value={emailConf}
-          onChange={(e) => [setEmailConf(e.target.value), setError("")]}
-        />
-        <Input
-          type="password"
-          placeholder="Senha"
-          value={senha}
-          onChange={(e) => [setSenha(e.target.value), setError("")]}
-        />
-        <C.labelError>{error}</C.labelError>
-        <Button Text="Cadastrar Usuário" onClick={handleSignup} />
+        <Form inline>
+        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Label for="exampleEmail" className="mr-sm-2">Username</Label>
+          <Input type="email"   placeholder="email@emaail.com" />
+        </FormGroup>
+        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Label for="exampleEmail" className="mr-sm-2">Email</Label>
+          <Input type="email"   placeholder="email@emaail.com" />
+        </FormGroup>
+        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Label for="exampleEmail" className="mr-sm-2">Telefone</Label>
+          <Input type="text"   placeholder="+55 13 99999 9999" />
+        </FormGroup>
+        <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Label for="examplePassword" className="mr-sm-2">Senha</Label>
+          <Input type="password" name="password" id="examplePassword" placeholder="******" />
+        </FormGroup>
+        <Link to="/Usuario">
+        <Button size="lg" outline className="mt-3 lg" to="/Usuario">Cadastrar Usuário</Button>
+      </Link>
         <C.LabelSignin>
           Já tem uma conta?
           <C.Strong>
             <Link to="/">&nbsp;Entre</Link>
           </C.Strong>
-        </C.LabelSignin>
+          </C.LabelSignin>
+      </Form>
+      <Row>
+      <Col sm="12">
+        <Card body>
+          <CardTitle>Special Title Treatment</CardTitle>
+          <CardText>Logo.</CardText>
+        </Card>
+      </Col>
+      </Row>
       </C.Content>
     </C.Container>
+
+
+
+
+
+
+
+
+
+
+
   );
 };
-
 export default Cadastro;

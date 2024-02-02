@@ -1,59 +1,40 @@
-
-import React, { useState } from "react";
-import Input from '../Components/Input';
-import Button from '../Components/Button';
+import React from "react";
 import * as C from './style';
-import { Link, useNavigate } from "react-router-dom";
-import UseAuth from '../Hooks/UseAuth';
+import { Link } from "react-router-dom";
+import * as reactstrap from 'reactstrap';
+import { Button,  Label, Input, CardTitle, Row, Col, Card,  CardText,  } from 'reactstrap';
 
+  
 const Login = () => {
-  const { signin } = UseAuth();
-  const navigate = useNavigate();
-
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [error, setError] = useState("");
-
-  const handleLogin = () => {
-    if (!email | !senha) {
-      setError("Preencha todos os campos");
-      return;
-    }
-
-    const res = signin(email, senha);
-
-    if (res) {
-      setError(res);
-      return;
-    }
-
-    navigate("/home");
-  };
-
   return (
     <C.Container>
-      <C.Label>Login de usuário</C.Label>
+    <C.Label>Login de usuário</C.Label>
       <C.Content>
-        <Input
-          type="email"
-          placeholder="Digite seu E-mail"
-          value={email}
-          onChange={(e) => [setEmail(e.target.value), setError("")]}
-        />
-        <Input
-          type="password"
-          placeholder="Digite sua Senha"
-          value={senha}
-          onChange={(e) => [setSenha(e.target.value), setError("")]}
-        />
-        <C.labelError>{error}</C.labelError>
-        <Button Text="Entrar" onClick={handleLogin} />
+      <reactstrap.Form inline>
+        <reactstrap.FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Label for="exampleEmail" className="mr-sm-2">Email</Label>
+          <Input type="email" name="email" id="exampleEmail"/>
+        </reactstrap.FormGroup>
+        <reactstrap.FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+          <Label for="examplePassword" className="mr-sm-2">Senha</Label>
+          <Input type="password" name="password" id="examplePassword" />
+        </reactstrap.FormGroup>
+        <Button size="lg" outline className="mt-3 lg" to="/">Login</Button>
         <C.LabelSignup>
           Não tem uma conta?
           <C.Strong>
             <Link to="/Cadastro">&nbsp;Registre-se</Link>
           </C.Strong>
         </C.LabelSignup>
+      </reactstrap.Form>
+      <Row>
+      <Col sm="12">
+        <Card body>
+          <CardTitle>Special Title Treatment</CardTitle>
+          <CardText>Logo.</CardText>
+        </Card>
+      </Col>
+      </Row>
       </C.Content>
     </C.Container>
   );
